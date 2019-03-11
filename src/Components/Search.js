@@ -1,39 +1,44 @@
-import React,{ Component } from 'react';
+import { Button, Form , Columns} from 'react-bulma-components/full';
+import React from 'react';
 import { connect } from 'react-redux';
-import { AddressFromInput,fetchGetRequest } from '../Actions/GeoCode/geoCode_actions';
+import { AddressFromInput,fetchWithThunk } from '../Actions/GeoCode/geoCode_actions';
 
 
 const Search = (props) => {
-
-  // onButtonClick = (e) => {
-  //
-  //   this.props.fetchGetRequest()
-  //   this.props.AddressFromInput(this.state.address)
-  // }
-
-
-    console.log(props)
     return (
       <div>
-        <input
-        type="text"
-          id="outlined-name"
-          placeholder="Enter Address Here"
-          name="address"
-          value={props.Geocode.address}
-          onChange={(e) => {
-            (AddressFromInput(e.target.value))
-          }}
-        />
-        <button onClick={fetchGetRequest}>GO</button>
+        <Columns>
+          <Columns.Column className="Column is-10">
+            <Form.Input
+              className="input  is-medium is-primary is-small is-rounded is-hovered"
+              type="text"
+              id="outlined-name"
+              placeholder="Enter Address Here"
+              name="address"
+              value={props.Geocode.address}
+              onChange={(e) => {
+                (props.AddressFromInput(e.target.value))
+              }}
+            />
+          </Columns.Column>
+          <Columns.Column className="Column is-2">
+            {props.Geocode.geoFetching ? <Button className=".button is-medium is-primary is-rounded is-loading is-fullwidth"
+              onClick={() => props.fetchWithThunk(props.Geocode.address)}></Button> :
+              <Button className=".button is-medium is-primary is-rounded is-fullwidth "
+                onClick={() => props.fetchWithThunk(props.Geocode.address)}>
+                GO
+            </Button>
+            }
+          </Columns.Column>
+        </Columns>
       </div>
-    )
 
+    )
 }
 
 const mapActionsToProps = ({
-  AddressFromInput : (e) => AddressFromInput(e),
-  fetchGetRequest
+  AddressFromInput,
+  fetchWithThunk
 })
 
 const mapStateToProps = state => ({ Geocode : state.Geocode })
