@@ -8,7 +8,7 @@ const Search = (props) => {
     return (
       <div>
         <Columns>
-          <Columns.Column className="Column is-10">
+          <Columns.Column className="Column is-9">
             <Form.Input
               className="input  is-medium is-primary is-small is-rounded is-hovered"
               type="text"
@@ -20,6 +20,9 @@ const Search = (props) => {
                 (props.AddressFromInput(e.target.value))
               }}
             />
+          </Columns.Column>
+          <Columns.Column className="Column is-1">
+
           </Columns.Column>
           <Columns.Column className="Column is-2">
             {props.Geocode.geoFetching ? <Button className=".button is-medium is-primary is-rounded is-loading is-fullwidth"

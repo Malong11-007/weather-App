@@ -1,17 +1,29 @@
 import React, { Component } from 'react';
-import Search from './Components/Search'
+import Nvbar from './Components/Navbar';
+import { connect } from 'react-redux';
+import WeatherBox from './Components/WeatherBox'
+
 
 import './App.css';
 
 class App extends Component {
   render() {
     return (
+
       <div className="App">
-        Hello World
-        <Search></Search>
+      {console.log(this.props.Geocode.geoFetching)}
+        <Nvbar></Nvbar>
+      {this.props.Geocode.geoError &&
+        <div class="container notification is-danger">
+          {`Sorry, we couldn't find any results matching ${this.props.Geocode.address}`}
+        </div>
+      }
+      <WeatherBox></WeatherBox>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({ Geocode : state.Geocode })
+
+export default connect(mapStateToProps)(App);

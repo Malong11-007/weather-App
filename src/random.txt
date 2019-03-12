@@ -1,0 +1,22 @@
+MAIN CARD
+"time": 1552231800,
+"icon": "wind",
+"temperature": 72.18,
+"humidity": 0.6,
+"pressure": 1013.87,
+"windSpeed": 21.9,
+"cloudCover": 0,
+"visibility": 10,
+
+import clearday from '../png/044-sun.png'
+import clearnight from '../png/013-night-1.png'
+import snow from
+import sleet from
+import wind  from
+import fog from
+import cloudy from
+import partlycloudyday  from
+import partlycloudynight from
+import hail from
+import thunderstorm from
+import tornado from

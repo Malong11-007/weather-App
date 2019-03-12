@@ -14,17 +14,18 @@ const WeatherBox = (props) => {
         props.Geocode.data.daily.data.map((item,index) => {
           console.log(item.icon)
         const imgAddress = iconSelector(item.icon)
-          console.log(imgAddress)
-          return <Columns.Column key={index}>
+          return <Columns className="Columns" key={index}>
             <WeatherCard
-                temperature={item.temperature}
+                temperatureMax={item.apparentTemperatureHigh}
+                temperatureMin={item.apparentTemperatureLow }
                 humidity={item.humidity}
                 windSpeed={item.windSpeed}
                 image={imgAddress}
                 pressure={item.pressure}
                 time={item.time}
+                unit={props.Geocode.data.flags.units}
             ></WeatherCard>
-          </Columns.Column>
+          </Columns>
         })
       }
 
